@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34728.123
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoNotRunAwaySceneInspecter", "DoNotRunAwaySceneInspecter.csproj", "{B6170E1E-D286-4411-87FB-5F69C67D9DA3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B6170E1E-D286-4411-87FB-5F69C67D9DA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6170E1E-D286-4411-87FB-5F69C67D9DA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6170E1E-D286-4411-87FB-5F69C67D9DA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6170E1E-D286-4411-87FB-5F69C67D9DA3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {86A0B4B6-4615-4799-82DD-5E2A3385CEDD}
+	EndGlobalSection
+EndGlobal
