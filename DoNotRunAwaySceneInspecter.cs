@@ -27,7 +27,7 @@ namespace DoNotRunAwaySceneInspecter
           new ModConfigurationKey<bool>("enabled", "Should the mod be enabled", () => true);
         [AutoRegisterConfigKey]
         private static readonly ModConfigurationKey<float> distance =
-          new ModConfigurationKey<float>("distance", "Distance to move the inspector slot", () => 0.1f);
+          new ModConfigurationKey<float>("distance", "Distance to move the worker inspector slot", () => 0.1f);
         private static ModConfiguration Config;
 
         public static bool Enabled => Config.GetValue(enabled);
