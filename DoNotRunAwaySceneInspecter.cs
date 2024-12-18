@@ -20,14 +20,22 @@ namespace DoNotRunAwaySceneInspecter
 
         [AutoRegisterConfigKey]
         private static readonly ModConfigurationKey<bool> enabled =
-          new ModConfigurationKey<bool>("enabled", "Should the mod be enabled", () => true);
+          new ModConfigurationKey<bool>("enabled", "Should the mod be enabled", 
+              () => true);
         [AutoRegisterConfigKey]
         private static readonly ModConfigurationKey<float> distance =
-          new ModConfigurationKey<float>("distance", "Distance to move the worker inspector slot if this value is 0 then set inspector position is in front of User", () => 0.1f);
+          new ModConfigurationKey<float>("distance", "Distance to move the worker inspector slot if this value is 0 then set inspector position is in front of User", 
+              () => 0.1f);
+        [AutoRegisterConfigKey]
+        private static readonly ModConfigurationKey<float> distance_screen =
+          new ModConfigurationKey<float>("distance", "Overwriting the above variables in Screen mode", 
+              () => 0.0f);
+
         private static ModConfiguration Config;
 
         public static bool Enabled => Config.GetValue(enabled);
-        public static float Distance => Config.GetValue(distance);
+        public static float Distance_vr => Config.GetValue(distance);
+        public static float Distance_screen => Config.GetValue(distance_screen);
 
         public override void OnEngineInit()
         {
@@ -40,16 +48,21 @@ namespace DoNotRunAwaySceneInspecter
         class InspectorHelper_OpenInspectorButton_Patch
         {
             public static bool Prefix(
-                  IWorldElement target,
-                  ref Slot source,
-                  bool openWorkerOnly)
+                ref Slot? __result,
+                IWorldElement target,
+                ref Slot source,
+                bool openWorkerOnly
+                )
             {
                 if (!Enabled) { return true; }
+
+                float Distance;
+                Distance = target.World.LocalUser.VR_Active ? Distance_vr : Distance_screen;
 
                 if (Distance == 0.0) 
                 {
                     source = null;
-                    return true; 
+                    return false; 
                 }
 
                 if (target == null)
@@ -62,6 +75,8 @@ namespace DoNotRunAwaySceneInspecter
                 if (nearestParent1 == null && nearestParent2 == null && worker == null)
                 {
                     UniLog.Warning("The target is neither on a Slot nor on an User.\n" + target.ParentHierarchyToString());
+                    __result = null;
+                    return true;
                 }
                 else
                 {
@@ -104,6 +119,7 @@ namespace DoNotRunAwaySceneInspecter
                     }
                     else
                         slot1.PositionInFrontOfUser(new float3?(float3.Backward));
+                    __result = slot1;
                 }
 
                 return false;
