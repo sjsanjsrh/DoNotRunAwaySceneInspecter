@@ -12,11 +12,12 @@ namespace DoNotRunAwaySceneInspecter
 {
     public class DoNotRunAwaySceneInspecter : ResoniteMod
     {
+        internal const string DOMAIN_NAME = "com.Sinduy.DoNotRunAwaySceneInspecter";
+        internal const string VERSION = "1.0.4";
         public override string Name => "DoNotRunAwaySceneInspecter";
         public override string Author => "Sinduy";
-        public override string Version => FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion;
+        public override string Version => VERSION;
         public override string Link => "https://github.com/sjsanjsrh/DoNotRunAwaySceneInspecter";
-        public static readonly string DOMAIN_NAME = "com.Sinduy.DoNotRunAwaySceneInspecter";
 
         [AutoRegisterConfigKey]
         private static readonly ModConfigurationKey<bool> enabled =
@@ -48,7 +49,7 @@ namespace DoNotRunAwaySceneInspecter
         class InspectorHelper_OpenInspectorButton_Patch
         {
             public static bool Prefix(
-                ref Slot? __result,
+                ref Slot __result,
                 IWorldElement target,
                 ref Slot source,
                 bool openWorkerOnly
