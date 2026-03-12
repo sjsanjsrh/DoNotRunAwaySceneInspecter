@@ -34,10 +34,6 @@ namespace DoNotRunAwaySceneInspecter
 
         private static ModConfiguration Config;
 
-        public static bool Enabled => Config.GetValue(enabled);
-        public static float Distance_vr => Config.GetValue(distance);
-        public static float Distance_screen => Config.GetValue(distance_screen);
-
         public override void OnEngineInit()
         {
             Config = GetConfiguration();
@@ -55,10 +51,10 @@ namespace DoNotRunAwaySceneInspecter
                 bool openWorkerOnly
                 )
             {
-                if (!Enabled) { return true; }
+                if (!enabled.Value) { return true; }
 
                 float Distance;
-                Distance = target.World.LocalUser.VR_Active ? Distance_vr : Distance_screen;
+                Distance = target.World.LocalUser.VR_Active ? distance.Value : distance_screen.Value;
 
                 if (Distance == 0.0) 
                 {
@@ -75,7 +71,7 @@ namespace DoNotRunAwaySceneInspecter
                     worker = null;
                 if (nearestParent1 == null && nearestParent2 == null && worker == null)
                 {
-                    UniLog.Warning("The target is neither on a Slot nor on an User.\n" + target.ParentHierarchyToString());
+                    Warn("The target is neither on a Slot nor on an User.\n" + target.ParentHierarchyToString());
                     __result = null;
                     return true;
                 }
