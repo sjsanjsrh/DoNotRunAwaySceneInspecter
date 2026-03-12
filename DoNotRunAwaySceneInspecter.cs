@@ -13,7 +13,7 @@ namespace DoNotRunAwaySceneInspecter
     public class DoNotRunAwaySceneInspecter : ResoniteMod
     {
         internal const string DOMAIN_NAME = "com.Sinduy.DoNotRunAwaySceneInspecter";
-        internal const string VERSION = "1.0.4";
+        internal const string VERSION = "1.0.5";
         public override string Name => "DoNotRunAwaySceneInspecter";
         public override string Author => "Sinduy";
         public override string Version => VERSION;
